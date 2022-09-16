@@ -14,7 +14,6 @@ Console.Write("Please, input b = ");
 
 int b = Convert.ToInt32(Console.ReadLine());
 
-
 // Check the condition
 if(a > b)
 {
