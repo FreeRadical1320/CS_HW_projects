@@ -1,0 +1,48 @@
+// Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+// 0, 7, 8, -2, -2 -> 2
+// 1, -7, 567, 89, 223-> 3
+Console.Clear();
+int count = 0;
+
+while(true)
+{
+    Console.Write("Please, input next number: ");
+
+    int x = Convert.ToInt32(Console.ReadLine());
+
+    if(x > 0) 
+    {
+        count++;
+        Console.WriteLine($"You have inputed {count} positive numbers.");
+    }
+    
+    Console.Write("Do you want to finish? y/n: ");
+    string cmd = Convert.ToString(Console.ReadLine());
+    if(cmd == "y") break;
+}
+//=================================================================================================================
+
+// Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, 
+// заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+
+// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
+
+Console.Clear();
+Console.Write("Please, input k1: ");
+int k1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Please, input b1: ");
+int b1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Please, input k2: ");
+int k2 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Please, input b2: ");
+int b2 = Convert.ToInt32(Console.ReadLine());
+
+int x = (b2 - b1) / (k1 - k2);
+int y = k1 * x + b1;
+
+Console.WriteLine($"These two lines: y = {k1}x + {b1} and y = {k2}x + {b2} intersect in point ({x}, {y})");
+//==================================================================================================================
+
