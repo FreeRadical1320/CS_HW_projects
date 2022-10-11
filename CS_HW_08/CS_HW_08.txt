@@ -66,10 +66,145 @@ Console.WriteLine();
 PrintArray(SortArrayRowsDesc(arr));
 
 //============================================================================================
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Например, задан массив:
 
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 5 2 6 7
+
+// Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+
+Console.Clear();
+
+void PrintArray(int[,] arr)
+{
+    for(int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            Console.Write($"{arr[i, j]}\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] FillArray(int row, int col, int lowBorder, int highBorder)
+{
+    int[,] arr = new int[row, col];
+    for(int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            arr[i, j] = new Random().Next(lowBorder, highBorder + 1);
+        }
+    }
+    return arr;
+}
+
+void FindMinRowElementsSum(int[,] arr)
+{
+    int minSum = 0; 
+    int minIndex = 0;
+    int rowLength = arr.GetLength(1);
+
+    for(int j = 0; j < rowLength; j++) { minSum += arr[0, j]; }
+    
+    for (int i = 1; i < arr.GetLength(0); i++)
+    {
+        int tmpSum = 0;
+        for (int j = 0; j < rowLength; j++) { tmpSum += arr[i, j]; }
+        if(tmpSum < minSum)
+        {
+            minSum = tmpSum;
+            minIndex = i;
+        }
+    }
+    Console.WriteLine($"The row that has minimum sum of elements has index: {minIndex}.");
+}
+
+
+int[,] arr = FillArray(5, 5, 0, 100);
+
+PrintArray(arr);
+Console.WriteLine();
+FindMinRowElementsSum(arr);
 
 //============================================================================================
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
 
+Console.Clear();
+
+void PrintArray(int[,] arr)
+{
+    for(int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            Console.Write($"{arr[i, j]}\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] FillArray(int row, int col, int lowBorder, int highBorder)
+{
+    int[,] arr = new int[row, col];
+    for(int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            arr[i, j] = new Random().Next(lowBorder, highBorder + 1);
+        }
+    }
+    return arr;
+}
+
+int GetNewElement(int k, int l, int[,] arrA, int[,] arrB)
+{
+    int element = 0;
+
+    for (int i = 0; i < arrA.GetLength(1); i++)
+    {
+        element += arrA[k, i] * arrB[i, l];
+    }
+    return element;
+}
+
+int[,] ProductMatrix(int[,] arrA, int[,] arrB)
+{
+    int row = arrA.GetLength(0); 
+    int col = arrB.GetLength(1);
+
+    int[,] arrC = new int[row, col];
+
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            arrC[i, j] = GetNewElement(i, j, arrA, arrB); 
+        }
+    }
+    return arrC;
+}
+
+
+int[,] arrA = FillArray(2, 2, 0, 10);
+Console.WriteLine($"Matrix A.");
+PrintArray(arrA);
+
+int[,] arrB = FillArray(2, 2, 0, 10);
+Console.WriteLine($"Matrix B.");
+PrintArray(arrB);
+Console.WriteLine($"The result of production matrix C.");
+PrintArray(ProductMatrix(arrA, arrB));
 
 //============================================================================================
 
